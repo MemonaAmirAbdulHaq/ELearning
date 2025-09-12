@@ -1,7 +1,8 @@
-import { addAnwser, addQuestion, addReview, editCourse, getAllCourses, getCourseByUser, getSingleCourse } from "./../controller/course.controller";
+import { addAnwser, addQuestion, addReplyToReview, addReview, deleteCourse, editCourse, getAllCourses, getCourseByUser, getSingleCourse } from "./../controller/course.controller";
 import { isAutheticated, authorizeRoles } from "./../middleware/auth";
 import express from "express";
 import { uploadCourse } from "../controller/course.controller";
+import { getAllCoursesService } from "../services/course.service";
 
 const courseRouter = express.Router();
 courseRouter.post(
@@ -58,6 +59,28 @@ courseRouter.put(
   addReview
   
  
+);
+
+courseRouter.put(
+  "/add-reply",
+  isAutheticated,
+  authorizeRoles("admin"),
+  addReplyToReview
+  
+);
+courseRouter.put(
+  "/get-courses",
+  isAutheticated,
+  authorizeRoles("admin"),
+  getAllCourses
+  
+);
+courseRouter.delete(
+  "/delete-courses/:id",
+  isAutheticated,
+  authorizeRoles("admin"),
+  deleteCourse
+  
 );
 
 export default courseRouter;

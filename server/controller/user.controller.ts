@@ -1,3 +1,6 @@
+import { getAllUsersService, updateUserRoleService } from './../services/user.service';
+
+
 import { accessTokenOptions, refreshTokenOptions, sendToken } from './../utils/jwt';
 require('dotenv').config();
 import {Request,Response,NextFunction} from 'express';
@@ -381,4 +384,51 @@ export  const updateProfilePicture=CatchAsyncError(async(req:Request,res:Respons
     
   }
 })
+
+//get all user only for admin
+
+export const getAllUsers=CatchAsyncError(
+  async(req:Request,res:Response,next:NextFunction)=>{
+ try {
+  getAllUsersService(res);
+ } catch (error:any) {
+      return next(new ErrorHandler(error.message, 400));
+  
+ }
+});
+
+//update user role only for admin
+export const updateUserRole=CatchAsyncError(async(req:Request,res:Response,next:NextFunction)=>{
+  try {
+    const {id,role}=req.body;
+    updateUserRoleService(res,id,role);
+  } catch (error:any) {
+    return next(new ErrorHandler(error.message,400
+
+    ))
+    
+  }
+});
+//delete user or course only admin
+export const deleteUser = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const user = await userModel.findById(id);
+      if (!user) {
+        return next(new ErrorHandler(`Invalid user Id`, 404));
+      }
+      await userModel.deleteOne({ _id: id });
+
+      await redis.del(id as string);
+
+      res.status(200).json({
+        success: true,
+        message: "User deleted successfully",
+      });
+    } catch (error: any) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  }
+);
 
