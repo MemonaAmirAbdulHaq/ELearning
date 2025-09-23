@@ -58,7 +58,7 @@ export const createOrder=CatchAsyncError(async(req:Request,res:Response,next:Nex
         return next(new ErrorHandler(error.message,500))
         
       }
-          user?.courses.push(course?._id);//_
+          user?.courses.push(course?._id);//
           await  user?.save();
 
           await NotificationModel.create({

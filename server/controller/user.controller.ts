@@ -1,3 +1,4 @@
+import { NextFunction } from 'express';
 import { getAllUsersService, updateUserRoleService } from './../services/user.service';
 
 
@@ -195,7 +196,7 @@ export const updateAccessToken = CatchAsyncError(
      const refreshToken=jwt.sign({id:user._id},process.env.REFRESH_TOKEN as string,{
       expiresIn:"3d",
      })
-     // await redis.set(user._id, JSON.stringify(user), "EX", 604800); // 7days
+     await redis.set(user._id, JSON.stringify(user), "EX", 604800); // 7days
     req.user=user;
      // return next();
      res.cookie("access_token",accessToken,accessTokenOptions)

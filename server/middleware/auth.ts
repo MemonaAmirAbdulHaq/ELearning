@@ -4,6 +4,7 @@ import ErrorHandler from "../utils/ErrorHandler";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { redis } from "../utils/redis";
 import { CatchAsyncError } from "./catchAsyncError";
+import { WatchDirectoryFlags } from "typescript";
 //import { updateAccessToken } from "../controllers/user.controller";
 
 // authenticated user
@@ -57,3 +58,4 @@ export const authorizeRoles = (...roles: string[]) => {
     next();
   };
 };
+

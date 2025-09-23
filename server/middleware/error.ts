@@ -28,4 +28,4 @@ export const ErrorMiddleware =(err:any,req:Request,res:Response,next:NextFunctio
         success:false,
         message:err.message
      })
-}
+};
