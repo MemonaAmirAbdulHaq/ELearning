@@ -45,7 +45,7 @@ const Header: FC<Props> = ({activeItem}) => {
               activeItem={activeItem}
               isMobile={false}
               />
-              <ThemeSwitcher/>
+              <ThemeSwitcher />
             </div>
           </div>
         </div>

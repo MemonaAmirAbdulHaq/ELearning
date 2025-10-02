@@ -27,7 +27,7 @@ type Props = {
 const NavItems: React.FC<Props> = ({ activeItem, isMobile }) => {
   return (
     <>
-      <div className="800px:hidden mt-2">  {/* hidden */}
+      <div className="800px:hidden mt-2">  {/* hidden 800px:flex */}
         {navItemsData &&
           navItemsData.map((i, index) => (
             <Link href={`${i.url}`} key={index} passHref>
@@ -59,6 +59,7 @@ const NavItems: React.FC<Props> = ({ activeItem, isMobile }) => {
                 </Link>
               ))}
           </div>
+         
         </div>
       )}
     </>
