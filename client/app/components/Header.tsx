@@ -10,7 +10,7 @@ type Props = {
  
 };
 
-const Header: FC<Props> = (activeItem) => {
+const Header: FC<Props> = ({activeItem}) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
   if (typeof window !== "undefined") {
@@ -37,7 +37,7 @@ const Header: FC<Props> = (activeItem) => {
             <div>
               <Link href={"/"}
               className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}>
-ELearning
+              ELearning
               </Link>
             </div>
             <div className="flex items-center">
