@@ -1,24 +1,38 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
-:root {
+/* :root {
   
   --background: #ffffff;
   --foreground: #171717;
+} */
+ 
+:root {
+  --foreground-rgb :0,0,0;
+  --background-start-rgb:214,219,220;
+  --background-end-rgb:255,255,255;
 }
 
-
-
+/* @media (preferColorScheme:dark){ */
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-  }
+  } */
+   :root {
+  --foreground-rgb:255,255,255;
+  --background-start-rgb:0,0,0;
+  --background-end-rgb:0,0,0;
+   }
 }
 
 body {
  
-  color: var(--foreground);
+  /* color: var(--foreground); */
+  color: rgb(var(--foreground-rgb));
 }
 .hero_animation {
 background-image: linear-gradient(147.92deg , hsla(239,76%,53%,0.456) 10.41%,hsla(0,0%,100%,0) 89.25%);

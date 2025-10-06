@@ -5,7 +5,7 @@ import {useTheme} from 'next-themes';
 import { BiMoon,BiSun } from 'react-icons/bi';
 
 
-const ThemeSwitcher = () => {
+export const ThemeSwitcher = () => {
     const [mounted,setMounted]=useState(false);
     const {theme,setTheme}=useTheme();
     useEffect(()=> setMounted(true),[]);
@@ -14,7 +14,7 @@ const ThemeSwitcher = () => {
    <div className="flex items-center justify-center mx-4">
 
     {
-        theme ==="light"?(
+        theme ==="light" ? (
             <BiMoon
             className='cursor-pointer'
             fill='black'
@@ -33,4 +33,4 @@ const ThemeSwitcher = () => {
   )
 }
 
-export default ThemeSwitcher
+//export default ThemeSwitcher

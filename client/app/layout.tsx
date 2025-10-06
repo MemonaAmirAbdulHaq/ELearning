@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+//import type { Metadata } from "next";
 //import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Poppins } from "next/font/google";
@@ -45,5 +45,17 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+//     <html
+//   lang="en"
+//   suppressHydrationWarning
+//   className="bg-white dark:bg-gray-950 transition-colors duration-300"
+// >
+//   <body>
+//     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+//       {children}
+//     </ThemeProvider>
+//   </body>
+// </html>
+
   );
 }

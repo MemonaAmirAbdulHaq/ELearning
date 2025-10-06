@@ -48,14 +48,16 @@ const NavItems: React.FC<Props> = ({ activeItem, isMobile }) => {
           <div className="w-full text-center py-6">
             {navItemsData &&
               navItemsData.map((i, index) => (
-                <Link key={i.url} href="/" passHref>
+                <Link key={i.url} href="/" passHref> {/*key=i.url*/}
                   <span
                     className={`${
                       activeItem === index
                         ? "dark:text-[#37a39a] text-[crimson]"
                         : "dark:text-white text-black"
                     } block py-5 text-[18px] px-6 font-Poppins font-[400]`}
-                  ></span>
+                  >
+                {i.name}
+                  </span>
                 </Link>
               ))}
           </div>
