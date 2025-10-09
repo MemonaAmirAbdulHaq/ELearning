@@ -1,28 +1,40 @@
-"use client";
+'use client'
 import Link from "next/link";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import NavItems from "../utils/NavItems";
 import {ThemeSwitcher} from "../utils/ThemeSwitcher";
 import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
-
+import CustomModal from "../utils/CustomModal";
+import Login from '../components/Auth/Login'
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
   activeItem: number;
+  route:string;
+  setRoute:(route:string)=>void
 };
 
-const Header: FC<Props> = ({ activeItem,setOpen }) => {
+const Header: FC<Props> = ({ activeItem,setOpen,route,open,setRoute }) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 85) {
-        setActive(true);
-      } else {
-        setActive(false);
-      }
-    });
-  }
+  // if (typeof window !== "undefined") {
+  //   window.addEventListener("scroll", () => {
+  //     if (window.scrollY > 85) {
+  //       setActive(true);
+  //     } else {
+  //       setActive(false);
+  //     }
+  //   });
+  // }
+  useEffect(() => {
+  const handleScroll = () => {
+    setActive(window.scrollY > 85);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   const handleClose=(e:any)=>{
     if(e.target.id==="screen"){
@@ -48,7 +60,7 @@ const Header: FC<Props> = ({ activeItem,setOpen }) => {
                 ELearning
               </Link>
             </div>
-            <div className="flex item-center">
+            <div className="flex items-center">
               <NavItems activeItem={activeItem} isMobile={false} />
               <ThemeSwitcher/>
               {/* only for mobile */}
@@ -60,7 +72,7 @@ const Header: FC<Props> = ({ activeItem,setOpen }) => {
               </div>
               <HiOutlineUserCircle
               size={25}
-              className="cursor-pointer dark:text-white text-black"
+              className="hidden 800px:block cursor-pointer dark:text-white text-black"
               onClick={()=> setOpen(true)}/>
             </div>
 
@@ -69,11 +81,18 @@ const Header: FC<Props> = ({ activeItem,setOpen }) => {
            {/*mobile sidebar*/}
            {
             openSidebar &&(
-              <div className="fixed w-full h-screen top-0 left-0 z-[9999] dark:bg-[unset] bg-[#00000024]"
+              <div className="fixed w-full h-screen top-0 left-0 z-[99999] dark:bg-[unset] bg-[#00000024]"
               onClick={handleClose}
               id="screen">
-                <div className="w-[70%] fixed z-[999999999] h-screen bg-white dark:bg-opacity-90 top-0 right-0 ">
+                <div className="w-[70%] fixed z-[999999999] h-screen bg-white dark:bg-slate-900 dark:bg-opacity-90 top-0 right-0 ">
                <NavItems activeItem={activeItem} isMobile={true}/>
+                <HiOutlineUserCircle
+              size={25}
+              className="cursor-pointer ml-5 my-2 dark:text-white text-black"
+              onClick={()=> setOpen(true)}/>
+              <br />
+              <br />
+              <p className="text-[16px] px-2 pl-5 text-black dark:text-white">Copyright 2025 ELearning</p>
                 </div>
               </div>
 
@@ -81,6 +100,23 @@ const Header: FC<Props> = ({ activeItem,setOpen }) => {
            }
 
       </div>
+      {
+        route === "Login" &&(
+          <>
+          {
+            open &&(
+              <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Login}/>
+            )
+          }
+          </>
+        )
+      }
+      
     </div>
   );
 };
