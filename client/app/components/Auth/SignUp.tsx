@@ -44,7 +44,7 @@ const SignUp: FC<Props> = ({ setRoute }) => {
   const formik = useFormik({
     initialValues: { name: "", email: "", password: "" },
     validationSchema: schema,
-    onSubmit: async ({ email, password }) => {
+    onSubmit: async ({name, email, password }) => {
       const data={
         name,email,password
       };
@@ -146,7 +146,7 @@ const SignUp: FC<Props> = ({ setRoute }) => {
           Already have an account?{" "}
           <span
             className="text-[#2190ff] pl-1 cursor-pointer"
-            onClick={() => setRoute("Sign-In")}
+            onClick={() => setRoute("Login")}
           >
             Sign in
           </span>
