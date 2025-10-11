@@ -23,8 +23,7 @@ return (
     setOpen={setOpen}
     activeItem={activeItem}
     setRoute={setRoute}
-    route={route}
-    
+    route={route}    
     />
     <Hero/>
   </div>
