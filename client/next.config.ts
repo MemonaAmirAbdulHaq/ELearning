@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
    experimental: {
     turbo: false, // disable Turbopack
   },
+  images:{
+    domains:['res.cloudinary.com']
+  },
 };
 
 export default nextConfig;
