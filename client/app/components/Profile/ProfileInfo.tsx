@@ -135,12 +135,31 @@ const ProfileInfo = ({ user, avatar }: Props) => {
                 value={user?.email}
               />
             </div>
-            <input
-              type="submit"
-              value="Update"
-              required
-              className={`w-full 800px:w-[250px] h-[40px] border border-[#37a39a] text-center dark:text-white text-black rounded-[3px] mt-8 cursor-pointer`}
-            />
+            
+            {/* <input
+  type="submit"
+  value="Update"
+  required
+  className="w-full 800px:w-[250px] h-[40px] 
+             bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 
+             text-white text-center 
+             rounded-[3px] mt-8 cursor-pointer 
+             transition-all duration-300 
+             hover:opacity-90 hover:shadow-lg"
+               /> */}
+               <input
+  type="submit"
+  value="Update"
+  required
+  className="w-[200px] h-[40px] 
+             bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 
+             text-white text-center 
+             rounded-full mt-8 cursor-pointer 
+             border border-transparent 
+             transition-all duration-300 
+             hover:opacity-90 hover:shadow-lg"
+/>
+
           </div>
         </form>
       </div>
