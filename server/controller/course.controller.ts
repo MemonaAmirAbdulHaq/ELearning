@@ -1,3 +1,5 @@
+import axios from  'axios'
+//import { generateVideoUrl } from './course.controller';
 
 import { Response, Request, NextFunction } from "express";
 import { CatchAsyncError } from "../middleware/catchAsyncError";
@@ -477,24 +479,25 @@ export const deleteCourse = CatchAsyncError(
 );
 
 // generate video url
-// export const generateVideoUrl = CatchAsyncError(
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const { videoId } = req.body;
-//       const response = await axios.post(
-//         `https://dev.vdocipher.com/api/videos/${videoId}/otp`,
-//         { ttl: 300 },
-//         {
-//           headers: {
-//             Accept: "application/json",
-//             "Content-Type": "application/json",
-//             Authorization: `Apisecret ${process.env.VDOCIPHER_API_SECRET}`,
-//           },
-//         }
-//       );
-//       res.json(response.data);
-//     } catch (error: any) {
-//       return next(new ErrorHandler(error.message, 400));
-//     }
-//   }
-// );
+export const generateVideoUrl = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { videoId } = req.body;
+      const response = await axios.post(
+        `https://dev.vdocipher.com/api/videos/${videoId}/otp`,
+        { ttl: 300 },
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Apisecret ${process.env.VDOCIPHER_API_SECRET}`,
+          },
+        }
+      );
+      res.json(response.data);
+    } catch (error: any) {
+      return next(new ErrorHandler(error.message, 400));
+    }
+  }
+);
+

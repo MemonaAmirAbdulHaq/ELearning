@@ -1,4 +1,4 @@
-import { addAnwser, addQuestion, addReplyToReview, addReview, deleteCourse, editCourse, getAllCourses, getCourseByUser, getSingleCourse } from "./../controller/course.controller";
+import { addAnwser, addQuestion, addReplyToReview, addReview, deleteCourse, editCourse, generateVideoUrl, getAllCourses, getCourseByUser, getSingleCourse } from "./../controller/course.controller";
 import { isAutheticated, authorizeRoles } from "./../middleware/auth";
 import express from "express";
 import { uploadCourse } from "../controller/course.controller";
@@ -75,6 +75,14 @@ courseRouter.put(
   getAllCourses
   
 );
+
+courseRouter.post(
+  "/getVdoCipherOTP",
+  
+ generateVideoUrl
+  
+);
+
 courseRouter.delete(
   "/delete-courses/:id",
   isAutheticated,
